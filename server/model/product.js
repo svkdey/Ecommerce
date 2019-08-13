@@ -7,7 +7,7 @@ const productSchema=mongoose.Schema({
         unique:1,
         maxlength:100
     },
-    descrption:{
+    description:{
         required: true,
         type: String,
         maxlength:10000,
@@ -38,7 +38,7 @@ const productSchema=mongoose.Schema({
          required: true,
         type: Number
     },
-    solid:{
+    sold:{
         type:Number,
         maxlength:100,
         default:0
@@ -48,7 +48,7 @@ const productSchema=mongoose.Schema({
         type:Boolean
     },
     images:{
-        types:Array,
+        type:Array,
         default:[]
     }
 },{timestamps:true})

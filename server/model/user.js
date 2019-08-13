@@ -1,8 +1,10 @@
 const mongoose=require("mongoose");
 const bcrypt=require("bcrypt");
 const SALT=9;
-const jwt=require("jsonwebtoken")
+const jwt=require("jsonwebtoken");
+const moment=require("moment")
 require('dotenv').config();
+const crypto=require("crypto")
 const userSchema=mongoose.Schema({
     email:
         {
@@ -43,6 +45,12 @@ const userSchema=mongoose.Schema({
     },
     token:{
         type:String
+    },
+    resetToken:{
+        type: String
+    },
+    resetTokenExp: {
+        type: Number
     }
 
 });
@@ -73,7 +81,20 @@ userSchema.methods.comparePassword=function(candidatePW,cb){
     })
 
 }
-
+userSchema.methods.generateResetToken = function (cb) {
+    var user = this;
+    crypto.randomBytes(20,function(err,buffer){
+        var token=buffer.toString('hex');
+        var today=moment().startOf('day').valueOf();
+        var tomorrow = moment(today).endOf('day').valueOf();
+        user.resetToken=token;
+        user.resetTokenExp=tomorrow;
+        user.save(function(err,user){
+            if(err) return cb(err);
+            cb(null,user);
+        })
+    })
+}
 userSchema.methods.generateToken=function(cb){
     var user=this;
 
