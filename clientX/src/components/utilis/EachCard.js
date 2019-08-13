@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CustomButtom from './custombutton';
 import {connect} from 'react-redux';
-import {addToCard} from './../../actions/user_action'
+import {addToCard} from '../../actions/user_action'
 class EachCard extends Component {
     renderCardImage = (images)=>{
         if(images.length>0){

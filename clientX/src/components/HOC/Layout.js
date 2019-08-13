@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Header from './../header/Header';
+import Header from '../header/Header';
 import Footer from '../header/footer';
 import { connect } from 'react-redux';
 import { getSiteData } from '../../actions/site_action'

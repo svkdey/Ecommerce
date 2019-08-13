@@ -1,5 +1,5 @@
 import React from 'react'
-import CustomButtom from '../../components/utilis/custombutton';
+import CustomButtom from '../utilis/custombutton';
 import Login from './login'
 function RegisterLogin() {
     return (
